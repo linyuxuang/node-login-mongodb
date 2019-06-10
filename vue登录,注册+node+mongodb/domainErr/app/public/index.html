@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>登录</title>
+    <script src="javascripts/jquery.min.js"></script>
+</head>
+<body>
+    <div>
+        账户：<input type="text" name="name" id="name">
+        密码：<input type="password" name="pass" id="pas">
+    </div>
+    <input type="button" value="提交" id="sub"><br/>
+      账户名: <div id="div01"></div>
+      密码：<div id="pass"></div>
+</body>
+
+<script>
+
+$('#sub').on('click', function(){
+   var name=$("#name").val()
+   var pass=$("#pas").val()
+    $.ajax({
+             url:'/test',
+             type:'get',
+             data:{name:name,pass:pass},
+             dataType:'json',
+             success:function (result) {
+                 alert('传输成功');
+                 console.log(result)
+                 $('#div01').html(result.name)
+                 $('#pass').html(result.pass)
+             },
+             error:function (msg) {
+                 alert('系统发生错误');
+             }
+   })
+})
+
+</script>
+</html>
